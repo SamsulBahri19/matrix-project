@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--==================== FAVICON ====================-->
+    <link rel="icon" href="assets/img/looooogo.jpg" />
+    <!--========== BOX ICONS LIBRARY ==========-->
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!--========== CSS ==========-->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <!--========== Title ==========-->
+    <title>Invers Matriks 2x2</title>
+    <!--================== LINK THUMBNAIL META TAGS ===================-->
+    <!-- MS Tile - for Microsoft apps-->
+    <meta
+      name="msapplication-TileImage"
+      content="https://raw.githubusercontent.com/Thiagoow/UberEats-Responsive-LandingPage/master/assets/img/ThumbnailLinkImg.jpg"
+    />
+    <!-- fb & Whatsapp -->
+    <meta property="og:site_name" content="Uber Eats" />
+    <meta property="og:title" content="🥗 Delivery de comida | Uber Eats" />
+    <meta
+      property="og:description"
+      content="Restaurantes e mercados próximos de você! "
+    />
+    <!-- IMG URL: -->
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/Thiagoow/UberEats-Responsive-LandingPage/master/assets/img/ThumbnailLinkImg.jpg"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <!--  size up to 300px. Anything above this will not work in WhatsApp -->
+    <meta property="og:image:width" content="300" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:url" content="https://eats-uber.netlify.app" />
+    <script>
+        // Fungsi untuk menghitung determinan matriks 2x2
+        function hitungDeterminan(a, b, c, d) {
+            return a * d - b * c;
+        }
+
+        // Fungsi untuk menghitung invers matriks 2x2
+        function hitungInvers() {
+            // Mengambil nilai input
+            let a = parseFloat(document.getElementById("a").value);
+            let b = parseFloat(document.getElementById("b").value);
+            let c = parseFloat(document.getElementById("c").value);
+            let d = parseFloat(document.getElementById("d").value);
+
+            // Menghitung determinan
+            let determinan = hitungDeterminan(a, b, c, d);
+
+            if (determinan === 0) {
+                document.getElementById("hasil").innerHTML = "Matriks tidak memiliki invers (determinan = 0).";
+            } else {
+                // Menghitung invers
+                let inversA = d / determinan;
+                let inversB = -b / determinan;
+                let inversC = -c / determinan;
+                let inversD = a / determinan;
+
+                document.getElementById("hasil").innerHTML = 
+                    `         [${inversA.toFixed(2)}  ${inversB.toFixed(2)}]                
+                              [${inversC.toFixed(2)}  ${inversD.toFixed(2)}]`
+                ;
+            }
+        }
+    </script>
+</head>
+<body style="background-color: #BBD799;">
+    <header class="l-header" id="header" style="background-color: #227414; height: 75px;">
+        <nav class="nav bd-container" style="margin-top: 0px;">
+          <a href="#" class="nav_logo">
+            <b>
+              Mat
+              <span>Triks</span>
+            </b>
+          </a>
+
+          <div class="nav_menu" id="nav-menu">
+            <ul class="nav_list">
+              <li class="nav_item">
+                <a href="matriks3.html" class="nav_link">Matriks 3X3</a>
+              </li>
+              
+            </ul>
+          </div>
+
+          <div class="nav_menu" id="nav-menu">
+            <ul class="nav_list">
+              <li class="nav_item">
+                <a href="matriks4.html" class="nav_link">Matriks 4X4</a>
+              </li>
+              
+            </ul>
+          </div>
+  
+          <div class="nav_menu" id="nav-menu">
+            <ul class="nav_list">
+              <li class="nav_item">
+                <a href="index.html" class="nav_link">Home</a>
+              </li>
+              
+  
+              <li><i class="bx bx-moon change-theme" id="theme-button"></i></li>
+            </ul>
+          </div>
+  
+          <div class="nav_toggle" id="nav-toggle">
+            <!--When clicked activate the class "opened"
+            to the button tag as well to the 4 SVG lines-->
+            <button
+              class="menu"
+              aria-label="Abrir Menu"
+              onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))"
+            >
+              <svg width="40" height="41" viewBox="0 0 100 100">
+                <path
+                  class="line line1"
+                  d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"
+                />
+                <path class="line line2" d="M 20,50 H 80" />
+                <path
+                  class="line line3"
+                  d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"
+                />
+              </svg>
+            </button>
+          </div>
+        </nav>
+      </header>
+      
+        <div style="margin-top: 13%; text-align: center;" >
+            <h2 style="color: black;">Hitung Invers Matriks 2x2</h2>
+            <label for="a" style="color: black;">Matriks A:</label><br>
+            <input type="number" id="a" placeholder="Masukkan nilai a" required> 
+            <input type="number" id="b" placeholder="Masukkan nilai b" required><br>
+            <input type="number" id="c" placeholder="Masukkan nilai c" required>
+            <input type="number" id="d" placeholder="Masukkan nilai d" required><br><br>
+
+            <button onclick="hitungInvers()">Hitung Invers</button> 
+            <a href="matriks2.html" class="nav_link" style="margin-left: 5px;">Hapus</a><br><br>
+            <p style="color: black;">HASIL    :</p>
+            <textarea name="hasil" id="hasil" style="width: 18%; height: 80px; text-align: center;"></textarea>
+            <div id="hasil"></div>
+        </div>
+       
+        <img style="width: 100%; margin-top: 14px;"
+        src="assets/img/rum.png"
+        alt="Prato de comida saudável"
+        class="home_img"
+      />
+    <!--========== SCROLL REVEAL LIBRARY ==========-->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!--========== MAIN JS ==========-->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
